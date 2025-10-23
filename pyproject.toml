@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "proyecto_1"
+version = "0.1.0"
+description = "Proyecto modular con OpenAI"
+authors = ["Tu Nombre <tu@email.com>"]
+readme = "README.md"
+packages = [{ include = "proyecto_1", from = "src" }]
+
+[tool.poetry.dependencies]
+python = ">=3.13"
+openai = "^2.3.0"
+python-dotenv = "^1.1.1"
+requests = "^2.32.5"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
