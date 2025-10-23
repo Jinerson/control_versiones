@@ -36,6 +36,12 @@ def git_add_remote(repo_dir: str, remote_url: str, remote_name="origin"):
     out = run_git("git", "remote", "-v", where=repo_dir)
     if remote_name in out.stdout:
         logger.info(f"El remoto '{remote_name}' ya existe en la configuración.")
+        if run_git("git", "remote", "get-url", remote_name, where= repo_dir).stdout.strip() != remote_url.strip():
+            out = run_git("git", "remote", "set-url", remote_name, remote_url, where= repo_dir)
+            if out.returncode == 0:
+                logger.info(f"Se actualizo url del remoto.")
+            else:
+                logger.warning(f"No se pudo actualizar la url del remoto")
         return out
 
     # Agregar el remoto
@@ -59,7 +65,6 @@ def set_upstream(repo_dir, branch = "main"):
     run_git("git", "push", "-u", "origin", branch, where= repo_dir)
 
 def config_git(repo_dir:str, repo_url:str, branch= "main"):
-    # internet_conn
     git_init(repo_dir= repo_dir)
     git_add_remote(repo_dir, repo_url)
     git_set_branch(repo_dir)
@@ -128,13 +133,3 @@ def verify_env_vars(env_vars: dict):
             return False
     logger.info(f"Variables de entorno {str(list(env_vars.keys())).lstrip("[").rstrip("]")}encontradas y cargadas.")
     return True
-
-# def internet_conn():
-#     try:
-#         a = requests.get("https://www.google.com")
-#         return a
-#     except requests.ConnectionError as err:
-#         logger.error("No hay conexion a internet. Verifique su conexion.")
-#         sys.exit()
-#         return err
-        
