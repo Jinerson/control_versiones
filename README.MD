@@ -31,7 +31,7 @@ Una vez tengas Poetry y Git, sigue estos pasos:
 
 1. **Clona el repositorio:**
    ```bash
-   git clone https://github.com/Jinerson/asistentes.git
+   git clone https://github.com/Jinerson/control_versiones.git
    cd asistentes
    ```
 
