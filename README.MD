@@ -43,7 +43,7 @@ Una vez tengas Poetry y Git, sigue estos pasos:
 3. **Activa el entorno (opcional):**  
    Si deseas trabajar directamente dentro del entorno virtual de Poetry, ejecuta:
    ```bash
-   poetry shell
+   poetry env activate
    ```
 
 ---
